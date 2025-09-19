@@ -1,0 +1,105 @@
+shadow-[0_10px_30px_rgba(0,0,0,0.8)]
+//Reduce 1
+import { CommonModule } from '@angular/common';
+import { Component, OnInit, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Available } from './available';
+@Component({
+  selector: 'app-root',
+  imports: [CommonModule, FormsModule],
+  templateUrl: './app.html',
+  styleUrl: './app.css',
+})
+export class App implements OnInit {
+  constructor() {}
+  availablelist: Available[] = [];
+  status: string = '';
+  availablestatus: string = '';
+  ngOnInit(): void {
+    this.availablelist = [
+      {
+        city: 'A',
+        numberofslots: 2,
+      },
+
+      {
+        city: 'B',
+        numberofslots: 5,
+      },
+      {
+        city: 'C',
+        numberofslots: 5,
+      },
+      {
+        city: 'D',
+        numberofslots: 5,
+      },
+      {
+        city: 'E',
+        numberofslots: 5,
+      },
+    ];
+  }
+  booking = {
+    city: '',
+    entryDate: '',
+    exitDate: '',
+  };
+  checkAvailable() {
+    this.status = 'Loading...';
+    setTimeout(() => {
+      console.log('Successful..');
+      console.log('User Booking:', this.booking);
+
+      const availableEntry = this.availablelist.find(
+        (a) => a.city.toLowerCase() === this.booking.city.toLowerCase()
+      );
+
+      if (availableEntry && availableEntry.numberofslots > 0) {
+        availableEntry.numberofslots -= 1;
+        console.log(`Slot booked in city: ${availableEntry.city}`);
+      } else {
+        console.log('City not available or no slots left.');
+      }
+
+      console.log('Updated Available List:', this.availablelist);
+      this.status = '';
+    }, 2000);
+  }
+
+  protected readonly title = signal('parking');
+}
+
+///
+<body class="bg-[url('/BG.jpg')] bg-cover bg-no-repeat bg-fixed">
+
+///
+Muppidathi 02 my-app
+
+////
+ <!--  -->
+shadow-[0_25px_50px_-10px_rgba(59,130,246,0.5)]
+
+  // checkAvailable() {
+  //   this.showAvailable = true;
+  //   this.bookinglist = [];
+  //   this.availablestatus = 'Loading...';
+
+  //   setTimeout(() => {
+  //     const availableEntry = this.availablelist.find(
+  //       (a) => a.city.toLowerCase() === this.booking.city.toLowerCase()
+  //     );
+
+  //     if (availableEntry) {
+  //       if (availableEntry.numberofslots >= this.booking.slots) {
+  //         availableEntry.numberofslots -= this.booking.slots;
+  //         this.availablestatus = 'Booking Confirmed';
+  //         this.bookinglist = [availableEntry];
+  //       } else {
+  //         this.availablestatus = 'Not enough slots available';
+  //       }
+  //     } else {
+  //       this.availablestatus = 'Not Available';
+  //     }
+  //   }, 2000);
+  // }

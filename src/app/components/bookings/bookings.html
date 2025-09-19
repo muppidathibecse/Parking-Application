@@ -1,0 +1,174 @@
+<body>
+  <div class="relative mt-30 flex gap-[30px] justify-center items-center justify-center">
+    <div
+      class="flex flex-col items-center shadow-2xl w-[500px] rounded-[20px] py-8 bg-white gap-[30px]"
+    >
+      <div class="flex flex-col justify-center items-center">
+        <h1 class="text-[35px] font-bold text-[#0D1C4C]">Booking Here</h1>
+        <hr class="border-t-4 w-35 rounded border-[#0D1C4C]" />
+      </div>
+      <input
+        type="text"
+        [(ngModel)]="booking.city"
+        placeholder="Select City"
+        class="placeholder-gray-400 border w-[340px] p-2 rounded-[5px]"
+      />
+      <input
+        type="number"
+        [(ngModel)]="booking.slots"
+        placeholder="Select Number of Slots"
+        class="placeholder-gray-400 border w-[340px] p-2 rounded-[5px]"
+      />
+      <input
+        type="number"
+        [(ngModel)]="booking.days"
+        placeholder="Select Number of Days"
+        class="placeholder-gray-400 border w-[340px] p-2 rounded-[5px]"
+      />
+
+      <div class="flex gap-[50px]">
+        <button
+          (click)="checkAvailable()"
+          class="bg-[#1A4C9B] font-semibold px-5 py-2 rounded-[10px] text-white w-[170px] cursor-pointer"
+        >
+          Check Available
+        </button>
+        <button
+          (click)="clear()"
+          class="bg-[#A0A0A0] font-semibold px-5 py-2 rounded-[10px] text-black w-[170px] cursor-pointer"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+    <div *ngIf="showAvailable" class="flex flex-col justify-center items-center">
+      <h1 class="text-[25px] font-semibold text-[#0D1C4C] mt-5">{{ availablestatus }}</h1>
+      <div
+        *ngIf="availablestatus === 'Not Available'"
+        class="flex flex-col justify-center items-center py-3 gap-3"
+      >
+        <p class="text-gray-500">Click Here to you can see the Availabale Location</p>
+        <button
+          class="bg-[#1A4C9B] text-[17px] shadow-lg cursor-pointer text-white px-4 py-2 rounded-[10px]"
+          (click)="MoveLocation()"
+        >
+          Click here
+        </button>
+      </div>
+
+      <div
+        *ngFor="let slot of bookinglist"
+        class="flex flex-col justify-between gap-3 bg-white w-[270px] h-[380px] shadow-xl p-2 rounded-[20px]"
+      >
+        <img src="{{ slot.imagepath }}" alt="" class="h-[160px] rounded" />
+        <hr class="h-px bg-gray-400 border-0" />
+
+        <p
+          [ngClass]="slot.numberofslots === 0 ? 'text-gray-500' : 'text-black'"
+          class="font-bold text-[18px] w-[200px]"
+        >
+          {{ slot.city }}, Bangalore - 5600851.
+        </p>
+        <div class="flex justify-between text-gray-500 font-semibold">
+          <p [ngClass]="slot.numberofslots === 0 ? 'text-red-500' : 'text-green-500'">
+            {{ slot.numberofslots }} Slots
+          </p>
+
+          <p>{{ slot.rs | currency : 'INR' }} / Day</p>
+        </div>
+
+        <button
+          (click)="openPopup(slot)"
+          [ngClass]="
+            slot.numberofslots === 0
+              ? 'bg-gray-500 cursor-not-allowed'
+              : 'bg-[#1A4C9B] cursor-pointer'
+          "
+          class="bg-[#1A4C9B] py-2 text-white font-bold rounded-[10px] text-[18px]"
+        >
+          {{ slot.numberofslots === 0 ? 'No Slots' : 'Book Now' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="showPopup"
+    class="fixed inset-0 flex items-center justify-center backdrop-blur-sm z-50"
+  >
+    <div
+      *ngIf="!confirmstatus"
+      class="flex flex-col justify-center bg-white w-[300px] h-[350px] rounded-lg shadow-2xl border-1 p-6 relative"
+    >
+      <button
+        (click)="closePopup()"
+        class="absolute top-1 right-3 cursor-pointer text-black font-bold text-[35px]"
+      >
+        &times;
+      </button>
+
+      <h2 class="text-[30px] font-bold mb-4 text-center">{{ booking.city }}</h2>
+
+      <p class="mb-2">Number of Slots: {{ booking.slots }}</p>
+      <p class="mb-2">Number of Days: {{ booking.days }}</p>
+      <p class="mb-2">
+        Total:
+        {{
+          (selectedSlot?.rs || 0) * (booking.slots || 0) * (booking.days || 0)
+            | currency : 'INR' : 'symbol' : '1.0-0'
+        }}
+      </p>
+
+      <button
+        (click)="changestatus()"
+        class="mt-4 bg-[#1A4C9B] text-white py-2 px-4 rounded-[10px] cursor-pointer hover:shadow-xl"
+      >
+        Book Now
+      </button>
+      <button
+        (click)="closePopup()"
+        class="mt-4 bg-red-500 text-white py-2 px-4 rounded-[10px] cursor-pointer hover:shadow-xl"
+      >
+        Cancel
+      </button>
+    </div>
+    <div
+      *ngIf="confirmstatus"
+      class="flex items-center justify-center bg-white w-[300px] h-[350px] rounded-lg shadow-2xl border-1 p-6 relative"
+    >
+      <div *ngIf="!loadingstatus" class="flex justify-center flex-col items-center">
+        <img src="Qr.svg" alt="" class="h-[200px] w-[200px]" />
+        <button
+          (click)="loadingstatus = true"
+          (click)="Confirm()"
+          class="mt-4 bg-[#1A4C9B] text-white py-2 px-4 rounded-[10px] w-[200px] cursor-pointer hover:shadow-xl"
+        >
+          Confirm Booking
+        </button>
+        <button
+          (click)="closePopup()"
+          (click)="ClearAll()"
+          class="mt-4 bg-red-500 text-white py-2 px-4 rounded-[10px] w-[200px] cursor-pointer hover:shadow-xl"
+        >
+          Cancel
+        </button>
+      </div>
+      <div *ngIf="loadingstatus" class="flex flex-col justify-center items-center">
+        <p *ngIf="confirm_msg === 'Successfully Booked'" class="text-[50px]">
+          <i class="fa-regular fa-thumbs-up text-[#0D1C4C]"></i>
+        </p>
+        <h1 class="text-[25px] font-semibold text-center text-[#0D1C4C] mt-5">
+          {{ confirm_msg }} {{ selectedSlot?.city }}..!
+        </h1>
+        <button
+          (click)="closePopup()"
+          (click)="ClearAll()"
+          *ngIf="confirm_msg === 'Successfully Booked'"
+          class="mt-4 bg-green-500 text-white text-[20px] py-2 px-4 rounded-[10px] w-[200px] cursor-pointer shadow-2xl"
+        >
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</body>

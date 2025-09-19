@@ -1,0 +1,41 @@
+<body class="relative mt-15">
+  <div class="flex flex-col justify-center items-center px-10 p-10">
+    <h1 class="text-[35px] font-bold text-[#0D1C4C]">Popular Locations</h1>
+    <hr class="border-t-4 w-35 rounded border-[#0D1C4C]" />
+    <div class="flex gap-[50px] mt-5">
+      <div class="flex flex-col justify-center items-center">
+        <img src="Ban.svg" class="h-[100px] w-[100px]" alt="" />
+        <p class="text-[18px] text-[#0D1C4C]">Bangalore</p>
+      </div>
+      <div class="flex flex-col justify-center items-center">
+        <img src="Mum.svg" class="h-[100px] w-[100px]" alt="" />
+        <p class="text-[18px] text-[#0D1C4C]">Mumbai</p>
+      </div>
+      <div class="flex flex-col justify-center items-center">
+        <img src="Del.svg" class="h-[100px] w-[100px]" alt="" />
+        <p class="text-[18px] text-[#0D1C4C]">Delhi</p>
+      </div>
+      <div class="flex flex-col justify-center items-center">
+        <img src="Pune.svg" class="h-[100px] w-[100px]" alt="" />
+        <p class="text-[18px] text-[#0D1C4C]">Pune</p>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col justify-center items-center px-10 p-10">
+    <h1 class="text-[35px] font-bold text-[#0D1C4C]">Bangalore</h1>
+    <hr class="border-t-4 w-35 rounded border-[#0D1C4C]" />
+    <div class="flex justify-center items-center flex-col gap-5 mt-5">
+      <p
+        class="bg-[#b2d0f9] w-[750px] py-4 text-center items-center text-[20px] rounded-[20px] cursor-pointer hover:shadow-lg hover:bg-[#7bb2fe]"
+        *ngFor="let slot of availablelist"
+      >
+        {{ slot.city }}
+      </p>
+    </div>
+  </div>
+  <hr class="h-px bg-gray-400 border-0" />
+
+  <div class="w-[100%]">
+    <app-footer></app-footer>
+  </div>
+</body>

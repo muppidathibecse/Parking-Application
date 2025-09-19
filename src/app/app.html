@@ -1,0 +1,77 @@
+<body>
+  <main class="flex flex-col min-h-screen bg-[#eef8ff]">
+    <div
+      class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-2 shadow-xl bg-white"
+    >
+      <div class="flex flex-row items-center gap-2">
+        <img src="Logo.jpg" alt="" class="h-[55px] w-[55px]" />
+        <h1 class="text-[40px] font-bold text-[#0D1C4C]">Parking.</h1>
+      </div>
+      <nav class="flex gap-[30px] text-gray-400">
+        <a
+          class="text-[16px] font-semibold hover:text-black cursor-pointer"
+          routerLink="/home"
+          routerLinkActive="text-[#0D1C4C] font-bold"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          HOME
+        </a>
+        <a
+          class="text-[16px] font-semibold hover:text-black cursor-pointer"
+          routerLink="/about"
+          routerLinkActive="text-[#0D1C4C] font-bold"
+        >
+          ABOUT
+        </a>
+        <a
+          class="text-[16px] font-semibold hover:text-black cursor-pointer"
+          routerLink="/bookings"
+          routerLinkActive="text-[#0D1C4C] font-bold"
+        >
+          BOOKING
+        </a>
+        <a
+          class="text-[16px] font-semibold hover:text-black cursor-pointer"
+          routerLink="/locations"
+          routerLinkActive="text-[#0D1C4C] font-bold"
+        >
+          LOCATIONS
+        </a>
+        <a
+          class="text-[16px] font-semibold hover:text-black cursor-pointer"
+          routerLink="/history"
+          routerLinkActive="text-[#0D1C4C] font-bold"
+        >
+          HISTORY
+        </a>
+
+        <a (click)="View()" class="text-[16px] font-semibold hover:text-black cursor-pointer">
+          <i class="fa-solid fa-phone-volume mr-2"></i>+91 98765 43210
+        </a>
+      </nav>
+    </div>
+    <div *ngIf="showPopup" class="relatively flex items-center justify-center">
+      <div
+        class="fixed top-22 right-5 bg-white px-3 py-3 rounded-[10px] z-[100] flex items-center justify-center gap-3 cursor-pointer"
+      >
+        <p class="text-lg font-semibold text-gray-800">+91 98765 43210</p>
+      </div>
+    </div>
+
+    <div
+      (click)="ChatPopup()"
+      class="fixed bottom-5 right-5 h-[50px] w-[50px] rounded-full z-[100] flex items-center justify-center overflow-hidden cursor-pointer"
+    >
+      <img src="chat.webp" alt="icon" class="h-full w-full object-cover" />
+    </div>
+
+    <div *ngIf="showChatPopup" class="fixed bottom-5 right-5 z-50">
+      <div class="bg-white w-[500px] h-[500px] rounded-lg relative p-0 flex flex-col">
+        
+        <app-chat class="w-full h-full"></app-chat>
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+  </main>
+</body>

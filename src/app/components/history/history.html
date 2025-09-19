@@ -1,0 +1,29 @@
+<body class="relative mt-15">
+  <div class="flex flex-col justify-center items-center px-10 p-10">
+    <h1 class="text-[35px] font-bold text-[#0D1C4C]">History</h1>
+    <hr class="border-t-4 w-35 rounded border-[#0D1C4C]" />
+  </div>
+  <p class="text-[35px] font-semibold text-[#0D1C4C] text-center">{{statusmsg}}</p>
+  <div
+  *ngIf="ShowHistory"
+  class="flex flex-wrap mx-20 gap-10">
+    <div
+      *ngFor="let history of historylist.slice().reverse()"
+      class="flex flex-col justify-between shadow-xl gap-3 w-[250px] h-[350px] bg-white rounded-[20px] p-2"
+    >
+      <img src="{{ history.imagepath }}" alt="" class="rounded-[10px] h-[160px]" />
+      <hr class="h-px bg-gray-400 border-0" />
+
+      <h1 class="font-bold text-[18px] w-[150px]">{{ history.city }}, Bangalore</h1>
+      <p>Total Price :{{ history.totalrs | currency : 'INR' }}</p>
+      <button
+        [ngClass]="
+          history.active ? 'bg-[#129a10] cursor-pointer' : 'bg-gray-500 cursor-not-allowed'
+        "
+        class="text-white py-2 rounded-[10px]"
+      >
+        {{ history.active ? 'Active' : 'Completed' }}
+      </button>
+    </div>
+  </div>
+</body>
