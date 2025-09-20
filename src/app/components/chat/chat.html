@@ -8,19 +8,21 @@
   <!-- Messages area -->
   <div class="flex-1 overflow-y-auto p-2 space-y-1">
     <p
-    *ngFor="let message of messageList"
-      class="bg-gradient-to-br from-violet-500 via-indigo-500 to-blue-500 px-2 rounded-[10px] py-2 w-[300px] text-[17px] text-white"
+      *ngFor="let message of messageList"
+      class="bg-gradient-to-br bg from-violet-500 via-indigo-500 to-blue-500 px-2 rounded-[10px] py-2 w-[300px] text-[17px] text-white"
     >
-     {{message}}
+      {{ message }}
     </p>
   </div>
 
   <!-- Input -->
   <div class="p-2">
     <input
+      [(ngModel)]="input_msg"
       type="text"
       placeholder="Type your message..."
       class="w-full border px-2 py-2 rounded-[10px]"
     />
+    <button (click)="Send()">Send</button>
   </div>
 </div>
