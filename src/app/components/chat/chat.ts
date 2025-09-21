@@ -20,17 +20,18 @@ export class Chat implements OnInit {
       ['How Are You', 'I am Fine'],
       ['Hello', 'Hi there!'],
       ['Bye', 'Goodbye!'],
+      ['How to use','Go to bookings']
     ]);
   }
   Send() {
     console.log(this.input_msg);
     this.messageList.push(this.input_msg);
+    const response = this.responses.get(this.input_msg);
+    this.output_msg = response ? response : "Sorry, I don't understand!";
+    this.input_msg = '';
     setTimeout(() => {
-      const response = this.responses.get(this.input_msg);
-      this.output_msg = response ? response : "Sorry, I don't understand!";
       this.messageList.push(this.output_msg);
       this.output_msg = '';
-      this.input_msg = '';
-    }, 2000);
+    }, 1000);
   }
 }

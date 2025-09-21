@@ -10,7 +10,6 @@ import { Chat } from './components/chat/chat';
 })
 export class App {
   showPopup = false;
-
   View() {
     this.showPopup = !this.showPopup;
   }
