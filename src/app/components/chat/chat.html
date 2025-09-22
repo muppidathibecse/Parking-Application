@@ -1,22 +1,23 @@
 <div class="bg-[#0073ff22] flex rounded-2xl shadow flex-col h-full">
-  <!-- Header -->
   <div class="flex flex-col justify-center items-center p-2">
     <h1 class="text-[20px] text-[#0D1C4C]">Chatbox</h1>
     <hr class="border-t-2 w-10 rounded border-[#0D1C4C]" />
   </div>
 
-  <!-- Messages area -->
-  <div class="flex-1 overflow-y-auto p-2 space-y-1">
-    
-    <p
-      *ngFor="let message of messageList"
-      class="bg-gradient-to-br bg from-violet-500 via-indigo-500 to-blue-500 px-2 rounded-[10px] py-2 w-[300px] text-[17px] text-white"
+  <div class="flex-1 overflow-y-auto p-2 space-y-2">
+    <div
+      *ngFor="let message of messageList; let i = index"
+      class="flex"
+      [ngClass]="i % 2 === 0 ? 'justify-end' : 'justify-start'"
     >
-      {{ message }}
-    </p>
+      <p
+        class="bg-gradient-to-br from-violet-500 via-indigo-500 to-blue-500 px-3 py-2 rounded-[10px] w-fit max-w-[300px] text-[17px] text-white"
+      >
+        {{ message }}
+      </p>
+    </div>
   </div>
 
-  <!-- Input -->
   <div class="p-2 flex gap-3">
     <input
       [(ngModel)]="input_msg"
@@ -24,6 +25,11 @@
       placeholder="Type your message..."
       class="w-full border px-2 py-2 rounded-[10px]"
     />
-    <img src="Send.jpg" alt="" (click)="Send()" class="h-[50px] w-[50px] cursor-pointer rounded-full" />
+    <img
+      src="Send.jpg"
+      alt=""
+      (click)="Send()"
+      class="h-[50px] w-[50px] cursor-pointer rounded-full"
+    />
   </div>
 </div>

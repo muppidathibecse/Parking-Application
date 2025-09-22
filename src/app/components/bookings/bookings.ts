@@ -123,6 +123,10 @@ export class Bookings implements OnInit {
         availableEntry.numberofslots = 0;
       }
     }
+    this.booking.city = '';
+    this.booking.slots = null;
+    this.booking.days = null;
+    this.clear()
   }
   ClearAll() {
     this.confirmstatus = false;

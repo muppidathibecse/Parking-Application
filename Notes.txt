@@ -103,3 +103,13 @@ shadow-[0_25px_50px_-10px_rgba(59,130,246,0.5)]
   //     }
   //   }, 2000);
   // }
+<button
+          [ngClass]="
+            slot.numberofslots === 0
+              ? 'bg-gray-500 cursor-not-allowed'
+              : 'bg-[#1A4C9B] cursor-pointer'
+          "
+          class="bg-[#1A4C9B] py-2 text-white font-bold rounded-[10px] text-[18px]"
+        >
+          {{ slot.numberofslots === 0 ? 'No Slots' : 'Book Now' }}
+        </button>

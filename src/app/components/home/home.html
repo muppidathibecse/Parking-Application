@@ -20,7 +20,7 @@
       <h1 class="text-[25px] font-semibold text-[#0D1C4C] mt-5">{{ availablestatus }}</h1>
       <div
         *ngFor="let slot of bookinglist"
-        class="flex flex-col justify-between gap-3 w-[270px] h-[380px] shadow-xl p-2 rounded-[20px]"
+        class="flex flex-col bg-white justify-between gap-3 w-[270px] h-[380px] shadow-xl p-2 rounded-[20px]"
       >
         <img src="{{ slot.imagepath }}" alt="" class="h-[160px] rounded" />
         <hr class="h-px bg-gray-400 border-0" />
@@ -38,16 +38,7 @@
 
           <p>{{ slot.rs | currency : 'INR' }} / Day</p>
         </div>
-        <button
-          [ngClass]="
-            slot.numberofslots === 0
-              ? 'bg-gray-500 cursor-not-allowed'
-              : 'bg-[#1A4C9B] cursor-pointer'
-          "
-          class="bg-[#1A4C9B] py-2 text-white font-bold rounded-[10px] text-[18px]"
-        >
-          {{ slot.numberofslots === 0 ? 'No Slots' : 'Book Now' }}
-        </button>
+        
       </div>
     </div>
     <img
