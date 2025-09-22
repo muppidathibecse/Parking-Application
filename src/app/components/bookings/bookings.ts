@@ -137,3 +137,4 @@ export class Bookings implements OnInit {
     this.router.navigate(['/locations']);
   }
 }
+

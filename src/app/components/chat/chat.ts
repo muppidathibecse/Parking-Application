@@ -20,7 +20,7 @@ export class Chat implements OnInit {
       ['How Are You', 'I am Fine'],
       ['Hello', 'Hi there!'],
       ['Bye', 'Goodbye!'],
-      ['How to use','Go to bookings']
+      ['How to use','Go to bookings, Select Seats, Slots and Days']
     ]);
   }
   Send() {
