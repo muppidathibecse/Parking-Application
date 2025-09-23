@@ -3,10 +3,11 @@
     <h1 class="text-[35px] font-bold text-[#0D1C4C]">History</h1>
     <hr class="border-t-4 w-35 rounded border-[#0D1C4C]" />
   </div>
-  <p class="text-[35px] font-semibold text-[#0D1C4C] text-center">{{statusmsg}}</p>
-  <div
-  *ngIf="ShowHistory"
-  class="flex flex-wrap mx-20 gap-10">
+  <p class="text-[35px] font-semibold text-gray-400 text-center">{{ statusmsg }}</p>
+  <p *ngIf="historylist.length === 0" class="text-[35px] font-semibold text-gray-400 text-center">
+    {{foundmsg}}
+  </p>
+  <div *ngIf="ShowHistory" class="flex flex-wrap mx-20 gap-10">
     <div
       *ngFor="let history of historylist.slice().reverse()"
       class="flex flex-col justify-between shadow-xl gap-3 w-[250px] h-[350px] bg-white rounded-[20px] p-2"

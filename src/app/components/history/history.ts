@@ -12,6 +12,7 @@ export class History implements OnInit {
   constructor() {}
   historylist: HistoryTable[] = [];
   ShowHistory: boolean = false;
+  foundmsg: string = '';
   intervalId: any;
   statusmsg: string = '';
   ngOnInit(): void {
@@ -19,6 +20,7 @@ export class History implements OnInit {
     this.statusmsg = 'Loading....';
     this.intervalId = setInterval(() => {
       this.ShowHistory = true;
+      this.foundmsg = 'No History Found';
       this.statusmsg = '';
     }, 2000);
   }

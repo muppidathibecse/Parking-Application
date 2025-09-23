@@ -9,7 +9,8 @@
         your Slots.
       </p>
       <p class="text-[#A0A0A0] font-semibold text-[17px] mt-2 w-[480px]">
-        Avilable Locations: Electronic City, INOX Mall, PVR Mall, Phoneix Mall, Whitefield, Hoodi...
+        Available Locations: Electronic City, INOX Mall, PVR Mall, Phoneix Mall, Whitefield,
+        Hoodi...
       </p>
     </div>
     <img src="Start.jpg" alt="" class="h-[350px] w-[550px] rounded-[20px] shadow-2xl" />
@@ -38,7 +39,6 @@
 
           <p>{{ slot.rs | currency : 'INR' }} / Day</p>
         </div>
-        
       </div>
     </div>
     <img
@@ -54,13 +54,22 @@
         <h1 class="text-[35px] font-bold text-[#0D1C4C]">Check Here</h1>
         <hr class="border-t-4 w-35 rounded border-[#0D1C4C]" />
       </div>
-      <input
-        type="text"
-        [(ngModel)]="booking.city"
-        placeholder="Select City"
-        class="placeholder-gray-400 border w-[340px] p-2 rounded-[5px]"
-      />
 
+      <select
+        id="city"
+        [(ngModel)]="booking.city"
+        class="w-[340px] p-3 cursor-pointer border rounded-[5px] text-gray-700"
+      >
+        <option value="" disabled selected>Select City</option>
+        <option value="Whitefield">Whitefield</option>
+        <option value="Electronic City">Electronic City</option>
+        <option value="Indiranagar">Indiranagar</option>
+        <option value="Lalbagh garden">Lalbagh garden</option>
+        <option value="INOX Cinemas">INOX Cinemas</option>
+        <option value="PVR VR">PVR VR</option>
+        <option value="Jayanagar">Jayanagar</option>
+        <option value="Phoenix">Phoenix</option>
+      </select>
       <div class="flex gap-[50px]">
         <button
           (click)="checkAvailable()"

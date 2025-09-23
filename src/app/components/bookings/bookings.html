@@ -7,12 +7,22 @@
         <h1 class="text-[35px] font-bold text-[#0D1C4C]">Booking Here</h1>
         <hr class="border-t-4 w-35 rounded border-[#0D1C4C]" />
       </div>
-      <input
-        type="text"
+
+      <select
+        id="city"
         [(ngModel)]="booking.city"
-        placeholder="Select City"
-        class="placeholder-gray-400 border w-[340px] p-2 rounded-[5px]"
-      />
+        class="w-[340px] p-2 border rounded-[5px] text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="" disabled selected>Select City</option>
+        <option value="Whitefield">Whitefield</option>
+        <option value="Electronic City">Electronic City</option>
+        <option value="Indiranagar">Indiranagar</option>
+        <option value="Lalbagh garden">Lalbagh garden</option>
+        <option value="INOX Cinemas">INOX Cinemas</option>
+        <option value="PVR VR">PVR VR</option>
+        <option value="Jayanagar">Jayanagar</option>
+        <option value="Phoenix">Phoenix</option>
+      </select>
       <input
         type="number"
         [(ngModel)]="booking.slots"
